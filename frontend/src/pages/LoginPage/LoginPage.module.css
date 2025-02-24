@@ -1,0 +1,32 @@
+.pageContainer {
+  display: flex;
+  /* flex-direction: column; */
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 100px);
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.title {
+  font-size: 24px;
+  margin-bottom: 30px;
+  color: #333;
+  text-align: center;
+  margin-top: 60px;
+}
+
+@media screen and (min-width: 768px) {
+  .title {
+    font-size: 32px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .title {
+    font-size: 40px;
+  }
+  .pageContainer {
+    padding-top: 60px;
+  }
+}
