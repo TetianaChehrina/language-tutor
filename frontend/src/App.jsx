@@ -2,7 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Suspense, lazy, useEffect, useState } from "react";
 import Layout from "./components/Common/Layout/Layout.jsx";
-import Loader from "../../frontend/src/components/Loader/Loader.jsx";
+import Loader from "./components/Common/Loader/Loader.jsx";
 import { refreshUser } from "../../frontend/src/redux/auth/operations.js";
 import {
   selectIsLoggedIn,
