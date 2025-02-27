@@ -1,20 +1,22 @@
-import { useDispatch } from "react-redux";
-import TeachersFilter from "../../components/Common/TeachersFilter/TeachersFilter.jsx";
-import TeachersList from "../../components/Common/TeachersList/TeachersList.jsx";
-import { fetchTeachers } from "../../redux/teachers/operations.js";
 import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchTeachers } from "../../redux/teachers/operations.js";
+import { selectFilters, selectPage } from "../../redux/teachers/selectors.js";
+import TeachersList from "../../components/Common/TeachersList/TeachersList.jsx";
+import TeachersFilter from "../../components/Common/TeachersFilter/TeachersFilter.jsx";
 import css from "./TeachersPage.module.css";
 
-export const TeachersPage = () => {
+const TeachersPage = () => {
   const dispatch = useDispatch();
+  const page = useSelector(selectPage);
+  const filters = useSelector(selectFilters);
 
   useEffect(() => {
-    dispatch(fetchTeachers({ page: 1, perPage: 5 }));
-  }, [dispatch]);
+    dispatch(fetchTeachers({ page, perPage: 4, filters }));
+  }, [dispatch, filters, page]);
 
   return (
-    <div>
-      <h1 className={css.title}> Teachers list</h1>
+    <div className={css.teacher_Page}>
       <TeachersFilter />
       <TeachersList />
     </div>

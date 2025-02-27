@@ -2,16 +2,30 @@ import { configureStore } from "@reduxjs/toolkit";
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import authReducer from "./auth/slice.js";
-import teacherReducer from "./teachers/slice.js";
+import teachersReducer from "./teachers/slice.js";
+
 const authPersistConfig = {
   key: "auth",
   storage,
   whitelist: ["user", "isLoggedIn"],
 };
 
-const store = configureStore({
+const teachersPersistConfig = {
+  key: "teachers",
+  storage,
+  whitelist: ["favorites"],
+};
+
+const persistedAuthReducer = persistReducer(authPersistConfig, authReducer);
+const persistedTeachersReducer = persistReducer(
+  teachersPersistConfig,
+  teachersReducer
+);
+
+export const store = configureStore({
   reducer: {
-    auth: persistReducer(authPersistConfig, authReducer, teacherReducer),
+    auth: persistedAuthReducer,
+    teachers: persistedTeachersReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({ serializableCheck: false }),

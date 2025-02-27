@@ -7,7 +7,7 @@ const teacherSlice = createSlice({
     teachers: [],
     teacher: {},
     page: 1,
-    totalPages: null,
+    totalPages: 0,
     favorites: [],
     filters: {
       languages: [],
@@ -22,6 +22,8 @@ const teacherSlice = createSlice({
   reducers: {
     setFilters: (state, action) => {
       state.filters = action.payload;
+      state.page = 1;
+      state.teachers = [];
     },
     resetFilters: (state) => {
       state.filters = {
@@ -45,8 +47,11 @@ const teacherSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(fetchTeachers.fulfilled, (state, action) => {
-        state.teachers = [...state.teachers, ...action.payload.teachers];
-        state.page += 1;
+        if (state.page === 1) {
+          state.teachers = action.payload.teachers;
+        } else {
+          state.teachers = [...state.teachers, ...action.payload.teachers];
+        }
         state.totalPages = action.payload.totalPages;
         state.isLoading = false;
       })
