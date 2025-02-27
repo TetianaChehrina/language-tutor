@@ -16,7 +16,7 @@ const TeachersPage = lazy(() =>
   import("../../frontend/src/pages/TeachersPage/TeachersPage.jsx")
 );
 const TeachersDetailsPage = lazy(() =>
-  import("../../frontend/src/pages/TeachersDetailsPage/TeachersPage.jsx")
+  import("./pages/TeachersDetailsPage/TeachersDetailsPage.jsx")
 );
 const RegistrationPage = lazy(() =>
   import("../../frontend/src/pages/RegistrationPage/RegistrationPage.jsx")

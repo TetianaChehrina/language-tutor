@@ -14,6 +14,7 @@ import { env } from './utils/env.js';
 import { errorHandler } from './middlewares/errorHandler.js';
 import { notFoundHandler } from './middlewares/notFoundHandler.js';
 import authRouter from './routes/authRouter.js';
+import teachersRouter from './routes/teachersRouter.js';
 import cloudinary from './utils/cloudinaryConfig.js';
 
 export const setupServer = () => {
@@ -27,16 +28,16 @@ export const setupServer = () => {
 
   const PORT = Number(env('PORT', '8000'));
   app.use(cookieParser());
-  app.use(express.json());
-
   app.use(
     cors({
       origin: process.env.CLIENT_URL,
       credentials: true,
     }),
   );
+  app.use(express.json());
 
   app.use('/api/auth', authRouter);
+  app.use('/api/teachers', teachersRouter);
   app.use('*', notFoundHandler);
   app.use(errorHandler);
 

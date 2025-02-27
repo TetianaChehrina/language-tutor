@@ -54,3 +54,8 @@ a:focus {
 a:active {
   color: #3939ad;
 }
+
+ul,
+ol {
+  list-style: none;
+}
