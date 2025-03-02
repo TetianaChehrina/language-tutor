@@ -1,19 +1,49 @@
 .card_Container {
   display: flex;
   flex-direction: column;
-  align-items: center;
-
-  background-color: #fff;
+  justify-content: space-between;
+  flex-grow: 1;
+  background: white;
   border-radius: 12px;
-  padding: 16px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-  max-width: 100%;
+  padding: 16px;
   width: 100%;
-  transition: transform 0.2s ease-in-out;
+  min-height: 350px;
+  max-width: 500px;
+  text-align: left;
+  transition: transform 0.3s ease-in-out;
 }
 
-.card_Container:hover {
-  transform: scale(1.03);
+.top_Info {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  align-items: center;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #ddd;
+  font-size: 14px;
+  font-weight: bold;
+  gap: 8px;
+}
+
+.price {
+  color: green;
+  font-weight: bold;
+}
+
+.favorite {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.main_Content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 10px;
+  text-align: center;
 }
 
 img {
@@ -21,69 +51,155 @@ img {
   height: 80px;
   border-radius: 50%;
   object-fit: cover;
-  margin-bottom: 12px;
 }
 
-h3 {
-  font-size: 18px;
-  color: #333;
-  margin-bottom: 8px;
-  text-align: center;
+.teacher_Info {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: left;
 }
 
-p {
+.languages {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+  margin: 10px 0;
+}
+
+.language_Tag {
+  background-color: #f0f0f0;
+  padding: 5px 10px;
+  border-radius: 14px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.text_Strong {
   font-size: 14px;
-  color: #666;
-  text-align: center;
-  margin: 4px 0;
+  font-weight: bold;
 }
 
-a {
+.rating_Container {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.rating_Text {
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.text {
+  font-size: 14px;
+}
+
+.text_Strong {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.text_Heading {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.text_button {
+  font-size: 14px;
+}
+
+.btn_Container {
+  display: flex;
+  gap: 20px;
+}
+
+.read_More {
+  display: inline-block;
   text-decoration: none;
-  background-color: #f0c14b;
-  color: #333;
-  padding: 8px 16px;
+  background: #ffb400;
+  color: white;
+  padding: 10px 16px;
   border-radius: 8px;
   font-weight: bold;
   margin-top: 10px;
+  font-size: 12px;
+  width: fit-content;
 }
 
-a:hover {
-  background-color: #e0a800;
+.booking_Btn {
+  display: inline-block;
+  text-decoration: none;
+  background: #ffb400;
+  color: white;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-weight: bold;
+  margin-top: 10px;
+  font-size: 12px;
+  width: fit-content;
+  border: none;
+}
+
+.read_More:hover {
+  background: #e0a000;
+}
+
+.booking_Btn:hover {
+  background: #e0a000;
 }
 
 @media screen and (min-width: 768px) {
   .card_Container {
+    /* width: 100%; */
+    max-width: 600px;
+    padding: 20px;
+  }
+
+  .top_Info {
+    flex-wrap: nowrap;
+    gap: 30px;
+    font-size: 20px;
+  }
+
+  .main_Content {
     flex-direction: row;
     align-items: flex-start;
-    max-width: 600px;
+    text-align: left;
+  }
+  .rating_Text {
+    font-size: 14px;
   }
 
   img {
     width: 100px;
     height: 100px;
-    margin-right: 16px;
   }
 
-  h3 {
-    font-size: 20px;
+  .teacher_Info {
+    margin-left: 16px;
+    align-items: flex-start;
     text-align: left;
   }
 
-  p {
+  .languages {
+    justify-content: flex-start;
+  }
+
+  .read_More {
     font-size: 16px;
-    text-align: left;
-  }
-
-  a {
-    margin-top: 0;
   }
 }
 
 @media screen and (min-width: 1440px) {
   .card_Container {
-    max-width: 800px;
-    padding: 24px;
+    max-width: 1200px;
+  }
+
+  .rating_Text {
+    font-size: 16px;
   }
 
   img {
@@ -91,11 +207,38 @@ a:hover {
     height: 120px;
   }
 
-  h3 {
+  .teacher_Info {
+    font-size: 18pxs;
+    margin-left: 20px;
+  }
+
+  .language_Tag {
+    font-size: 20px;
+  }
+
+  .text {
     font-size: 22px;
   }
 
-  p {
-    font-size: 18px;
+  .text_Strong {
+    font-size: 24px;
+    font-weight: bold;
+  }
+
+  .text_Heading {
+    font-size: 22px;
+  }
+
+  .text_Button {
+    font-size: 16px;
+  }
+
+  .read_More {
+    font-size: 16px;
+  }
+
+  .text_Strong {
+    font-size: 20px;
+    font-weight: bold;
   }
 }

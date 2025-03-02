@@ -3,7 +3,7 @@ import API from "../api";
 
 export const fetchTeachers = createAsyncThunk(
   "teachers/fetch",
-  async ({ page = 1, perPage = 5, filters = {} }, thunkAPI) => {
+  async ({ page = 1, perPage = 4, filters = {} }, thunkAPI) => {
     try {
       const params = { page, perPage, ...filters };
       const response = await API.get(`/teachers`, { params });
@@ -22,8 +22,7 @@ export const fetchTeachersById = createAsyncThunk(
   "teachers/fetchById",
   async (id, thunkAPI) => {
     try {
-      const response = await API.get(`/api/teachers/${id}`);
-
+      const response = await API.get(`/teachers/${id}`);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

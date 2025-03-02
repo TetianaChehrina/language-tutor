@@ -68,10 +68,6 @@ const RegistrationForm = () => {
       console.warn("Avatar is missing or not a file!");
     }
 
-    // for (let pair of formData.entries()) {
-    //   console.log(`${pair[0]}:`, pair[1]);
-    // }
-
     try {
       await dispatch(registerUser(formData)).unwrap();
     } catch (error) {

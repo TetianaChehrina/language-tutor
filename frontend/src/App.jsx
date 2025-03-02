@@ -8,6 +8,7 @@ import {
   selectIsLoggedIn,
   selectIsRefreshing,
 } from "../../frontend/src/redux/auth/selectors.js";
+import TeacherReviews from "./components/Common/TeacherReviews/TeacherReviews.jsx";
 
 const HomePage = lazy(() =>
   import("../../frontend/src/pages/HomePage/HomePage.jsx")
@@ -18,6 +19,7 @@ const TeachersPage = lazy(() =>
 const TeachersDetailsPage = lazy(() =>
   import("./pages/TeachersDetailsPage/TeachersDetailsPage.jsx")
 );
+
 const RegistrationPage = lazy(() =>
   import("../../frontend/src/pages/RegistrationPage/RegistrationPage.jsx")
 );
@@ -52,25 +54,6 @@ const App = () => {
     checkRefreshToken();
   }, [dispatch]);
 
-  // useEffect(() => {
-  //   const checkRefreshToken = async () => {
-  //     try {
-  //       // Перевіряємо чи є refreshToken в cookie
-  //       const hasRefreshToken = document.cookie.includes("refreshToken");
-
-  //       if (hasRefreshToken) {
-  //         await dispatch(refreshUser()).unwrap();
-  //       }
-  //     } catch (error) {
-  //       console.error("Token refresh failed:", error);
-  //     } finally {
-  //       setTokenChecked(true);
-  //     }
-  //   };
-
-  //   checkRefreshToken();
-  // }, [dispatch]);
-
   if (isRefreshing || !tokenChecked) {
     return <Loader />;
   }
@@ -81,7 +64,9 @@ const App = () => {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/teachers" element={<TeachersPage />} />
-          <Route path="/teachers/:id" element={<TeachersDetailsPage />} />
+          <Route path="/teachers/:id" element={<TeachersDetailsPage />}>
+            <Route path="reviews" element={<TeacherReviews />} />
+          </Route>
           <Route path="/register" element={<RegistrationPage />} />
           <Route path="/login" element={<LoginPage />} />
 

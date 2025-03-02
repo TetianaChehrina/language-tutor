@@ -21,9 +21,19 @@ const teacherSlice = createSlice({
   },
   reducers: {
     setFilters: (state, action) => {
-      state.filters = action.payload;
-      state.page = 1;
-      state.teachers = [];
+      // state.filters = action.payload;
+      // state.page = 1;
+      // state.teachers = [];
+      // state.filters = {
+      //   ...state.filters,
+      //   ...action.payload,
+      // };
+      state.filters = {
+        ...state.filters,
+        ...action.payload,
+        languages: action.payload.language ? [action.payload.language] : [],
+        levels: action.payload.level ? [action.payload.level] : [],
+      };
     },
     resetFilters: (state) => {
       state.filters = {
@@ -35,7 +45,17 @@ const teacherSlice = createSlice({
       };
     },
     addToFavorites: (state, action) => {
-      state.favorites.push(action.payload);
+      const isFavorite = state.favorites.some(
+        (favorite) => favorite.id === action.payload.id
+      );
+      if (!isFavorite) {
+        state.favorites.push(action.payload);
+      }
+    },
+    removeFromFavorites(state, action) {
+      state.favorites = state.favorites.filter(
+        (favorite) => favorite.id !== action.payload.id
+      );
     },
     setPage: (state, action) => {
       state.page = action.payload;
@@ -71,6 +91,11 @@ const teacherSlice = createSlice({
   },
 });
 
-export const { setFilters, resetFilters, addToFavorites, setPage } =
-  teacherSlice.actions;
+export const {
+  setFilters,
+  resetFilters,
+  addToFavorites,
+  removeFromFavorites,
+  setPage,
+} = teacherSlice.actions;
 export default teacherSlice.reducer;

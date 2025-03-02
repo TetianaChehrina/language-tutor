@@ -1,5 +1,4 @@
 export const selectTeachers = (state) => state.teachers.teachers || null;
-
 export const selectTeacher = (state) => state.teachers.teacher;
 export const selectPage = (state) => state.teachers.page;
 export const selectTotalPages = (state) => state.teachers.totalPages;
