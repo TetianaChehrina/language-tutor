@@ -3,19 +3,53 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 20px;
+  width: 100%;
+  padding: 0 10px;
 }
 
 .teacher_page_btn {
-  width: 95px;
+  width: 120px;
   height: 40px;
+  font-weight: bold;
   border-radius: 10px;
   cursor: pointer;
+  font-size: 16px;
+  border: none;
   margin-bottom: 20px;
 }
 
 ul {
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+  max-width: 1200px;
+  padding: 0;
+  list-style: none;
+}
+
+li {
+  display: flex;
+  flex: 1;
+}
+
+@media screen and (min-width: 768px) {
+  ul {
+    gap: 20px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: stretch;
+    gap: 20px;
+    padding: 0;
+    width: 100%;
+    max-width: 1200px;
+  }
 }

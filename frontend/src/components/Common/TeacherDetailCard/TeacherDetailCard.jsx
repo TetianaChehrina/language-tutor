@@ -1,15 +1,14 @@
-import { Link } from "react-router-dom";
 import { IoHeartOutline } from "react-icons/io5";
-import css from "./TeacherCard.module.css";
-import StarRating from "../StarRating/StarRating";
 import { useDispatch, useSelector } from "react-redux";
 import { selectFavorites } from "../../../redux/teachers/selectors";
 import {
   addToFavorites,
   removeFromFavorites,
 } from "../../../redux/teachers/slice";
+import css from "./TeacherDetailCard.module.css";
+import StarRating from "../StarRating/StarRating";
 
-const TeacherCard = ({ teacher }) => {
+const TeacherDetailCard = ({ teacher }) => {
   const dispatch = useDispatch();
   const favorites = useSelector(selectFavorites);
   const isFavorite = favorites.some((fav) => fav.id === teacher.id);
@@ -18,11 +17,12 @@ const TeacherCard = ({ teacher }) => {
     avatar_url,
     name,
     surname,
-    reviews = [],
-    levels = [],
     teaching_approach,
     price_per_hour,
     lessons_done,
+    requirements = [],
+    levels = [],
+    reviews = [],
   } = teacher;
 
   const reviewsCount = reviews.length;
@@ -63,7 +63,11 @@ const TeacherCard = ({ teacher }) => {
       </div>
 
       <div className={css.main_Content}>
-        <img src={avatar_url} alt={`${name} ${surname}`} />
+        <img
+          src={avatar_url}
+          alt={`${name} ${surname}`}
+          className={css.avatar}
+        />
         <div className={css.teacher_Info}>
           <h3 className={css.text_Heading}>
             {name} {surname}
@@ -79,21 +83,23 @@ const TeacherCard = ({ teacher }) => {
             <strong className={css.text_Strong}>Teacher's approach:</strong>{" "}
             {teaching_approach}
           </p>
-          <div className={css.btn_Container}>
-            <Link
-              to={`/teachers/${teacher.id}`}
-              className={`${css.read_More} ${css.text_Button}`}
-            >
-              Read More
-            </Link>
-            <button className={`${css.booking_Btn} ${css.text_Button}`}>
-              Book lesson
-            </button>
-          </div>
+
+          {requirements.length > 0 && (
+            <div className={css.requirements}>
+              <strong className={css.text_Strong}>Requirements:</strong>
+              <ul>
+                {requirements.map((item, index) => (
+                  <li key={index} className={css.text}>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
         </div>
       </div>
     </div>
   );
 };
 
-export default TeacherCard;
+export default TeacherDetailCard;

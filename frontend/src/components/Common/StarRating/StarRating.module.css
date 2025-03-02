@@ -1,0 +1,16 @@
+.star_Container {
+  display: flex;
+  gap: 4px;
+}
+
+.filled_Star {
+  color: gold;
+}
+
+.half_Star {
+  color: gold;
+}
+
+.empty_Star {
+  color: lightgray;
+}

@@ -1,0 +1,165 @@
+.card_Container {
+  display: flex;
+  flex-direction: column;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 12px;
+  width: 90%;
+  max-width: 100%;
+  text-align: left;
+  transition: transform 0.3s ease-in-out;
+  margin: 0 auto;
+}
+
+.top_Info {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #ddd;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.price {
+  color: green;
+  font-weight: bold;
+}
+
+.favorite {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.main_Content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 10px;
+  text-align: center;
+}
+
+.avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.teacher_Info {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: left;
+}
+
+.languages {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 5px;
+  margin: 10px 0;
+}
+
+.language_Tag {
+  background: #f6984c;
+  color: white;
+  padding: 5px 8px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.requirements {
+  margin-top: 10px;
+  width: 100%;
+}
+
+.requirements ul {
+  list-style-type: disc;
+  margin-left: 20px;
+}
+
+.text {
+  align-items: flex-start;
+  font-size: 14px;
+}
+
+.text_Strong {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.text_Heading {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.rating_Container {
+  display: flex;
+  gap: 10px;
+  font-size: 18px;
+}
+
+@media screen and (min-width: 768px) {
+  .card_Container {
+    max-width: 600px;
+    padding: 16px;
+  }
+
+  .main_Content {
+    flex-direction: row;
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .avatar {
+    width: 100px;
+    height: 100px;
+  }
+
+  .teacher_Info {
+    margin-left: 20px;
+  }
+
+  .text {
+    font-size: 16px;
+  }
+
+  .text_Strong {
+    font-size: 18px;
+  }
+
+  .text_Heading {
+    font-size: 20px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .card_Container {
+    max-width: 900px;
+  }
+
+  .text {
+    font-size: 18px;
+  }
+
+  .text_Strong {
+    font-size: 20px;
+  }
+
+  .text_Heading {
+    font-size: 22px;
+  }
+
+  .avatar {
+    width: 120px;
+    height: 120px;
+  }
+}
