@@ -15,6 +15,7 @@ import { errorHandler } from './middlewares/errorHandler.js';
 import { notFoundHandler } from './middlewares/notFoundHandler.js';
 import authRouter from './routes/authRouter.js';
 import teachersRouter from './routes/teachersRouter.js';
+import lessonRouter from './routes/lessonRouter.js';
 import cloudinary from './utils/cloudinaryConfig.js';
 
 export const setupServer = () => {
@@ -38,6 +39,7 @@ export const setupServer = () => {
 
   app.use('/api/auth', authRouter);
   app.use('/api/teachers', teachersRouter);
+  app.use('/api/lessons', lessonRouter);
   app.use('*', notFoundHandler);
   app.use(errorHandler);
 

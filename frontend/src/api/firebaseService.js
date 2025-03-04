@@ -1,9 +1,9 @@
 import { auth, db, googleProvider } from "../config/firebase"; // db - референс до Realtime Database
 import { ref, set, get } from "firebase/database";
 import {
-  createUserWithEmailAndPassword,
-  updateProfile,
-  signInWithEmailAndPassword,
+  // createUserWithEmailAndPassword,
+  // updateProfile,
+  // signInWithEmailAndPassword,
   signOut,
   signInWithPopup,
 } from "firebase/auth";

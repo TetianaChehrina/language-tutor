@@ -1,0 +1,141 @@
+.modal_Overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal_Content {
+  background: white;
+  width: 90%;
+  max-width: 420px;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  position: relative;
+}
+
+.close_Button {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.modal_Title {
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.modal_Description {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 15px;
+}
+
+.teacher_Info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.teacher_Avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.teacher_Label {
+  font-size: 12px;
+  color: #888;
+}
+
+.teacher_Name {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.label {
+  display: block;
+  text-align: left;
+  font-size: 14px;
+  font-weight: bold;
+  margin: 10px 0 5px;
+}
+
+.date_Picker {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
+  background: white;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.book_Button {
+  width: 100%;
+  background: #f4b400;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background 0.3s;
+}
+
+.book_Button:hover {
+  background: #e09e00;
+}
+
+@media screen and (min-width: 1440px) {
+  .modal_Content {
+    background: white;
+    width: 100%;
+    max-width: 720px;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    position: relative;
+  }
+
+  .input {
+    width: 97%;
+  }
+}

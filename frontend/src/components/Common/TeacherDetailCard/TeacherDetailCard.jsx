@@ -7,11 +7,14 @@ import {
 } from "../../../redux/teachers/slice";
 import css from "./TeacherDetailCard.module.css";
 import StarRating from "../StarRating/StarRating";
+import { useState } from "react";
+import BookLessonModal from "../BookLessonModal /BookLessonModal";
 
 const TeacherDetailCard = ({ teacher }) => {
   const dispatch = useDispatch();
   const favorites = useSelector(selectFavorites);
   const isFavorite = favorites.some((fav) => fav.id === teacher.id);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const {
     avatar_url,
@@ -96,8 +99,20 @@ const TeacherDetailCard = ({ teacher }) => {
               </ul>
             </div>
           )}
+          <button
+            className={`${css.booking_Btn} ${css.text_Button}`}
+            onClick={() => setIsModalOpen(true)}
+          >
+            Book lesson
+          </button>
         </div>
       </div>
+      {isModalOpen && (
+        <BookLessonModal
+          teacher={teacher}
+          onClose={() => setIsModalOpen(false)}
+        />
+      )}
     </div>
   );
 };

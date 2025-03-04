@@ -8,11 +8,14 @@ import {
   addToFavorites,
   removeFromFavorites,
 } from "../../../redux/teachers/slice";
+import { useState } from "react";
+import BookLessonModal from "../BookLessonModal /BookLessonModal";
 
 const TeacherCard = ({ teacher }) => {
   const dispatch = useDispatch();
   const favorites = useSelector(selectFavorites);
   const isFavorite = favorites.some((fav) => fav.id === teacher.id);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const {
     avatar_url,
@@ -86,12 +89,22 @@ const TeacherCard = ({ teacher }) => {
             >
               Read More
             </Link>
-            <button className={`${css.booking_Btn} ${css.text_Button}`}>
+            <button
+              className={`${css.booking_Btn} ${css.text_Button}`}
+              onClick={() => setIsModalOpen(true)}
+            >
               Book lesson
             </button>
           </div>
         </div>
       </div>
+
+      {isModalOpen && (
+        <BookLessonModal
+          teacher={teacher}
+          onClose={() => setIsModalOpen(false)}
+        />
+      )}
     </div>
   );
 };

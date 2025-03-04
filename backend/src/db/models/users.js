@@ -57,6 +57,10 @@ const userSchema = new Schema(
       type: Number,
       default: 0,
     },
+    lessons: {
+      planned: [{ type: Schema.Types.ObjectId, ref: 'Lesson' }],
+      completed: [{ type: Schema.Types.ObjectId, ref: 'Lesson' }],
+    },
     lessons_done: {
       type: Number,
       default: 0,
