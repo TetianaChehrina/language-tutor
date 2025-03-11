@@ -10,7 +10,7 @@
   max-width: 400px;
 }
 
-.formGroup {
+.form_Group {
   display: flex;
   flex-direction: column;
   gap: 14px;
@@ -35,7 +35,7 @@
   margin-top: 5px;
 }
 
-.submitButton {
+.submit_Button {
   padding: 12px;
   background-color: #f2af3c;
   color: white;
@@ -47,7 +47,7 @@
   transition: background-color 0.3s ease;
 }
 
-.submitButton:hover {
+.submit_Button:hover {
   background-color: #e89e2d;
 }
 

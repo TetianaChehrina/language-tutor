@@ -8,7 +8,7 @@ import lessonsReducer from "./lessons/slice.js";
 const authPersistConfig = {
   key: "auth",
   storage,
-  whitelist: ["user", "isLoggedIn", "favorites"],
+  whitelist: ["accessToken"],
 };
 
 const teachersPersistConfig = {

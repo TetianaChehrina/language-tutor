@@ -66,6 +66,12 @@
   gap: 5px;
   margin: 10px 0;
 }
+.languages_Text {
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+  margin: 5px 0;
+}
 
 .language_Tag {
   background: #f6984c;
@@ -105,6 +111,38 @@
   display: flex;
   gap: 10px;
   font-size: 18px;
+}
+
+.booking_Btn {
+  background-color: #ffcc4d;
+  width: 120px;
+  color: #333;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
+  margin-top: 12px;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.booking_Btn:hover {
+  background-color: #ffb700;
+  transform: scale(1.05);
+}
+
+.booking_Btn:active {
+  background-color: #e6a800;
+  transform: scale(0.98);
+}
+
+.btn_Container {
+  display: flex;
+  justify-content: center;
+  margin-top: 12px;
 }
 
 @media screen and (min-width: 768px) {
@@ -147,19 +185,40 @@
   }
 
   .text {
-    font-size: 18px;
+    font-size: 26px;
   }
 
   .text_Strong {
-    font-size: 20px;
+    font-size: 26px;
   }
 
   .text_Heading {
-    font-size: 22px;
+    font-size: 26px;
   }
 
   .avatar {
     width: 120px;
     height: 120px;
+  }
+
+  .language_Tag {
+    background: #f6984c;
+    color: white;
+    padding: 5px 8px;
+    border-radius: 6px;
+    font-size: 24px;
+    font-weight: bold;
+  }
+
+  .languages_Text {
+    font-size: 28px;
+    font-weight: 600;
+    color: #333;
+    margin: 5px 0;
+  }
+  .booking_Btn {
+    background-color: #ffcc4d;
+    width: 180px;
+    font-size: 20px;
   }
 }

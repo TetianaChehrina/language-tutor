@@ -2,24 +2,30 @@ import Lesson from '../db/models/lesson.js';
 import User from '../db/models/users.js';
 
 export const bookLesson = async (
-  userId,
+  studentId,
   teacherId,
   date,
   duration,
   reason,
   language,
 ) => {
+  if (!studentId || !teacherId || !date || !duration || !reason || !language) {
+    throw new Error('All fields are required');
+  }
+
   const newLesson = await Lesson.create({
-    userId,
+    studentId,
     teacherId,
     date,
     duration,
     reason,
     language,
   });
-  await User.findByIdAndUpdate(userId, {
+
+  await User.findByIdAndUpdate(studentId, {
     $push: { 'lessons.planned': newLesson._id },
   });
+
   await User.findByIdAndUpdate(teacherId, {
     $push: { 'lessons.planned': newLesson._id },
   });

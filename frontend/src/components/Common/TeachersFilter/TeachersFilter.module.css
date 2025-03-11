@@ -55,6 +55,11 @@
   .filter_Select {
     width: 220px;
   }
+
+  .filter_Button {
+    padding: 8px 12px;
+    font-size: 14px;
+  }
 }
 
 @media screen and (min-width: 1440px) {
@@ -67,6 +72,10 @@
   .filter_Input,
   .filter_Select {
     width: 250px;
+    font-size: 20px;
+  }
+  .filter_Button {
+    padding: 8px 12px;
     font-size: 20px;
   }
 }

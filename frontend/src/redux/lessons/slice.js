@@ -5,7 +5,7 @@ import {
   deleteLesson,
   fetchBusySlots,
   fetchLessons,
-} from "./operation";
+} from "./operation.js";
 
 const initialState = {
   plannedLessons: [],
@@ -42,7 +42,6 @@ const lessonsSlice = createSlice({
         state.loading = false;
         state.error = action.payload;
       })
-
       .addCase(fetchLessons.pending, (state) => {
         state.loading = true;
       })
@@ -60,6 +59,9 @@ const lessonsSlice = createSlice({
         state.loading = true;
       })
       .addCase(deleteLesson.fulfilled, (state, action) => {
+        if (!action.payload) {
+          return;
+        }
         state.loading = false;
         state.plannedLessons = state.plannedLessons.filter(
           (lesson) => lesson._id !== action.payload
@@ -74,6 +76,9 @@ const lessonsSlice = createSlice({
         state.loading = true;
       })
       .addCase(completeLesson.fulfilled, (state, action) => {
+        if (!action.payload || !action.payload._id) {
+          return;
+        }
         state.loading = false;
         const completedLesson = action.payload;
         state.plannedLessons = state.plannedLessons.filter(

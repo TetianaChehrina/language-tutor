@@ -1,4 +1,4 @@
-.pageContainer {
+.page_Container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -25,7 +25,7 @@
   .title {
     font-size: 40px;
   }
-  .pageContainer {
+  .page_Container {
     padding-top: 60px;
   }
 }

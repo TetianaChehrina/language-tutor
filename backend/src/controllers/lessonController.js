@@ -6,9 +6,28 @@ import {
   getLessons,
 } from '../services/lessonService.js';
 
-export const bookLessonController = async (req, res) => {
-  const newLesson = await bookLesson(req.body);
-  res.status(201).json(newLesson);
+export const bookLessonController = async (req, res, next) => {
+  try {
+    const { teacherId, date, duration, reason, language } = req.body;
+    const studentId = req.user.id;
+
+    if (!studentId) {
+      return res.status(401).json({ message: 'User not authenticated' });
+    }
+
+    const newLesson = await bookLesson(
+      studentId,
+      teacherId,
+      date,
+      duration,
+      reason,
+      language,
+    );
+
+    res.status(201).json(newLesson);
+  } catch (error) {
+    next(error);
+  }
 };
 
 export const getLessonController = async (req, res) => {

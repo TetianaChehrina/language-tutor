@@ -1,16 +1,17 @@
 import createHttpError from 'http-errors';
+import jwt from 'jsonwebtoken';
+import User from '../db/models/users.js';
 import {
   createUser,
   findUserByEmail,
   loginUserService,
+  updateUserProfile,
 } from '../services/authService.js';
 import cloudinary from '../utils/cloudinaryConfig.js';
 import {
   generateAccessToken,
   generateRefreshToken,
 } from '../services/tokenService.js';
-import jwt from 'jsonwebtoken';
-import User from '../db/models/users.js';
 
 export const registerUser = async (req, res) => {
   try {
@@ -39,11 +40,6 @@ export const registerUser = async (req, res) => {
       });
       avatarURL = uploadResponse;
     }
-    console.log('File information:', {
-      originalname: req.file.originalname,
-      mimetype: req.file.mimetype,
-      size: req.file.size,
-    });
 
     const newUser = await createUser({
       name,
@@ -88,8 +84,6 @@ export const login = async (req, res) => {
     email,
     password,
   );
-  console.log('AccessToken:', accessToken);
-  console.log('RefreshToken:', refreshToken);
 
   res.cookie('refreshToken', refreshToken, {
     httpOnly: true,
@@ -127,7 +121,9 @@ export const refresh = async (req, res) => {
 
   try {
     const decoded = jwt.verify(token, process.env.REFRESH_SECRET);
-    const user = await User.findById(decoded.userId);
+    const user = await User.findById(decoded.userId).select(
+      '-password -refreshToken',
+    );
 
     if (!user) {
       return res.status(404).json({ message: 'User not found' });
@@ -139,9 +135,22 @@ export const refresh = async (req, res) => {
       { expiresIn: '15m' },
     );
 
-    return res.status(200).json({ accessToken: newAccessToken });
+    return res.status(200).json({ user, accessToken: newAccessToken });
   } catch (error) {
     console.error('Token verification failed:', error);
     return res.status(500).json({ message: 'Something went wrong' });
+  }
+};
+
+export const updateUserController = async (req, res, next) => {
+  try {
+    const updatedUser = await updateUserProfile(
+      req.user.id,
+      req.body,
+      req.file,
+    );
+    res.json(updatedUser);
+  } catch (error) {
+    next(error);
   }
 };

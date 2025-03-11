@@ -1,84 +1,79 @@
-.teacherPage {
+.teacher_Page {
   display: flex;
   flex-direction: column;
   align-items: center;
   padding-top: 130px;
+  padding-bottom: 90px;
   max-width: 1200px;
   min-height: 100vh;
   margin: 0 auto;
 }
 
-.backButton {
+.back_Button {
   align-self: flex-start;
   background: #e76f51;
   color: white;
   border: none;
   padding: 10px 16px;
-  font-size: 12px;
+  font-size: 14px;
+  font-weight: bold;
   border-radius: 8px;
   cursor: pointer;
   transition: background 0.3s;
   margin-bottom: 20px;
 }
 
-.backButton:hover {
+.back_Button:hover {
   background: #d84315;
 }
 
-.detailsNav {
+.details_Nav {
   display: flex;
-  justify-content: center;
-  gap: 15px;
-  margin-top: 20px;
+  justify-content: flex-start;
+  width: 100%;
   padding: 10px;
 }
 
-button {
-  background: #f4a261;
+.reviews_Button {
+  background: #f7c24d;
   border: none;
   padding: 10px 15px;
   border-radius: 8px;
   font-size: 14px;
   font-weight: 600;
-  color: white;
+  color: rgb(9, 8, 8);
   cursor: pointer;
   transition: background 0.3s ease;
 }
 
-button:hover {
-  background: #e76f51;
-}
-
-button.active {
-  background: #e76f51;
-}
-
-.link {
-  text-decoration: none;
-  font-weight: 600;
-  color: black;
-  padding: 10px 15px;
-  border-radius: 8px;
-  transition: background 0.3s ease, color 0.3s ease;
-}
-
-.link:hover {
+.reviews_Button:hover {
   background: #f4a261;
-  color: white;
 }
 
-.active {
-  background: #e76f51;
-  color: white;
-}
-
-.link:hover {
+.reviews_Button.active {
   background: #f4a261;
-  color: white;
 }
 
 @media screen and (min-width: 768px) {
-  .backButton {
-    font-size: 20px;
+  .back_Button {
+    font-size: 16px;
+    padding: 12px 18px;
+  }
+
+  .reviews_Button {
+    font-size: 16px;
+    padding: 12px 18px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .back_Button {
+    font-size: 22px;
+    padding: 12px 18px;
+  }
+
+  .reviews_Button {
+    font-size: 22px;
+    padding: 12px 18px;
   }
 }

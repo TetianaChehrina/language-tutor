@@ -1,17 +1,22 @@
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { IoHeartOutline } from "react-icons/io5";
 import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-hot-toast";
+import BookLessonModal from "../BookLessonModal /BookLessonModal";
 import { selectFavorites } from "../../../redux/teachers/selectors";
 import {
   addToFavorites,
   removeFromFavorites,
 } from "../../../redux/teachers/slice";
-import css from "./TeacherDetailCard.module.css";
 import StarRating from "../StarRating/StarRating";
-import { useState } from "react";
-import BookLessonModal from "../BookLessonModal /BookLessonModal";
+import { selectUser } from "../../../redux/auth/selectors";
+import css from "./TeacherDetailCard.module.css";
 
 const TeacherDetailCard = ({ teacher }) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const user = useSelector(selectUser);
   const favorites = useSelector(selectFavorites);
   const isFavorite = favorites.some((fav) => fav.id === teacher.id);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -25,6 +30,7 @@ const TeacherDetailCard = ({ teacher }) => {
     lessons_done,
     requirements = [],
     levels = [],
+    languages = [],
     reviews = [],
   } = teacher;
 
@@ -40,9 +46,20 @@ const TeacherDetailCard = ({ teacher }) => {
   const handleFavorite = () => {
     if (isFavorite) {
       dispatch(removeFromFavorites(teacher));
+      toast.success(`${teacher.name} removed from favorites`);
     } else {
       dispatch(addToFavorites(teacher));
+      toast.success(`${teacher.name} added to favorites`);
     }
+  };
+
+  const handleBookLessonClick = () => {
+    if (!user) {
+      toast.error("You need to log in to book a lesson!");
+      navigate("/login");
+      return;
+    }
+    setIsModalOpen(true);
   };
 
   return (
@@ -75,6 +92,9 @@ const TeacherDetailCard = ({ teacher }) => {
           <h3 className={css.text_Heading}>
             {name} {surname}
           </h3>
+          <p className={css.languages_Text}>
+            <strong>Languages:</strong> {languages.join(", ")}
+          </p>
           <div className={css.languages}>
             {levels.map((level, index) => (
               <span key={index} className={css.language_Tag}>
@@ -101,7 +121,7 @@ const TeacherDetailCard = ({ teacher }) => {
           )}
           <button
             className={`${css.booking_Btn} ${css.text_Button}`}
-            onClick={() => setIsModalOpen(true)}
+            onClick={handleBookLessonClick}
           >
             Book lesson
           </button>
@@ -109,7 +129,7 @@ const TeacherDetailCard = ({ teacher }) => {
       </div>
       {isModalOpen && (
         <BookLessonModal
-          teacher={teacher}
+          teacherId={teacher._id}
           onClose={() => setIsModalOpen(false)}
         />
       )}

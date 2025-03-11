@@ -21,13 +21,6 @@ const teacherSlice = createSlice({
   },
   reducers: {
     setFilters: (state, action) => {
-      // state.filters = action.payload;
-      // state.page = 1;
-      // state.teachers = [];
-      // state.filters = {
-      //   ...state.filters,
-      //   ...action.payload,
-      // };
       state.filters = {
         ...state.filters,
         ...action.payload,

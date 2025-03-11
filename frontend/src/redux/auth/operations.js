@@ -1,21 +1,17 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import API from "../api.js";
-import {
-  setAccessToken,
-  clearAccessToken,
-  getAccessToken,
-} from "../tokenService.js";
+import { setAuthHeader, clearAuthHeader } from "../tokenService.js";
 
 export const registerUser = createAsyncThunk(
   "auth/register",
   async (formData, { rejectWithValue }) => {
     try {
       const { data } = await API.post("/auth/register", formData);
-      const { accessToken } = data;
+      const { accessToken, user } = data;
 
-      setAccessToken(accessToken);
+      setAuthHeader(accessToken);
 
-      return data;
+      return { user, accessToken };
     } catch (error) {
       return rejectWithValue(
         error.response?.data?.message || "Registration error"
@@ -30,7 +26,7 @@ export const loginUser = createAsyncThunk(
     try {
       const response = await API.post("/auth/login", credentials);
       const { accessToken, user } = response.data;
-      setAccessToken(accessToken);
+      setAuthHeader(accessToken);
       return { user, accessToken };
     } catch (error) {
       return rejectWithValue(error.response.data.message);
@@ -40,25 +36,15 @@ export const loginUser = createAsyncThunk(
 
 export const logoutUser = createAsyncThunk(
   "auth/logout",
-  async (_, { rejectWithValue }) => {
+  async (_, thunkAPI) => {
     try {
-      const token = getAccessToken();
-      if (!token) throw new Error("No access token found");
-
-      await API.post(
-        "/auth/logout",
-        {},
-        {
-          withCredentials: true,
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-
-      clearAccessToken();
+      await API.post("/auth/logout");
+      clearAuthHeader();
+      return null;
     } catch (error) {
-      return rejectWithValue(error.response?.data?.message || "Logout error");
+      return thunkAPI.rejectWithValue(
+        error.response?.data?.message || "Logout error"
+      );
     }
   }
 );
@@ -67,16 +53,34 @@ export const refreshUser = createAsyncThunk(
   "auth/refresh",
   async (_, thunkAPI) => {
     try {
-      const response = await API.get("/auth/refresh");
+      const response = await API.get("/auth/refresh", {
+        withCredentials: true,
+      });
+
       const { accessToken, user } = response.data;
 
-      setAccessToken(accessToken);
+      setAuthHeader(accessToken);
 
-      return { accessToken, user };
+      return { user, accessToken };
     } catch (error) {
-      clearAccessToken();
       return thunkAPI.rejectWithValue(
-        error.response?.data || { message: "Unknown error" }
+        error.response?.data?.message || "Refresh failed"
+      );
+    }
+  }
+);
+
+export const updateUserProfile = createAsyncThunk(
+  "auth/updateProfile",
+  async (formData, { rejectWithValue }) => {
+    try {
+      const response = await API.put("/profile", formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(
+        error.response?.data || "Failed to update profile"
       );
     }
   }

@@ -4,8 +4,8 @@ import { fetchTeachers } from "../../redux/teachers/operations.js";
 import { selectFilters, selectPage } from "../../redux/teachers/selectors.js";
 import TeachersList from "../../components/Common/TeachersList/TeachersList.jsx";
 import TeachersFilter from "../../components/Common/TeachersFilter/TeachersFilter.jsx";
-import css from "./TeachersPage.module.css";
 import Container from "../../components/Common/Container/Container.jsx";
+import css from "./TeachersPage.module.css";
 
 const TeachersPage = () => {
   const dispatch = useDispatch();

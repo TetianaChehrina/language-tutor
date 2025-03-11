@@ -1,0 +1,109 @@
+.card {
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 20px;
+  background: #fff;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+h3 {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.date,
+.duration {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 5px;
+}
+
+.complete_Btn,
+.delete_Btn {
+  padding: 10px 15px;
+  font-size: 14px;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  width: 100%;
+  max-width: 150px;
+}
+
+.complete_Btn {
+  background: #4caf50;
+  color: white;
+  margin-top: 10px;
+}
+
+.complete_Btn:hover {
+  background: #45a049;
+  transform: scale(1.05);
+}
+
+.delete_Btn {
+  background: #e74c3c;
+  color: white;
+  margin-top: 10px;
+}
+
+.delete_Btn:hover {
+  background: #c0392b;
+  transform: scale(1.05);
+}
+
+@media screen and (min-width: 768px) {
+  .card {
+    padding: 25px;
+  }
+
+  h3 {
+    font-size: 20px;
+  }
+
+  .date,
+  .duration {
+    font-size: 16px;
+  }
+
+  .complete_Btn,
+  .delete_Btn {
+    font-size: 16px;
+    max-width: 180px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .card {
+    min-height: 290px;
+    padding: 30px;
+  }
+
+  h3 {
+    font-size: 22px;
+  }
+
+  .date,
+  .duration {
+    font-size: 18px;
+  }
+
+  .complete_Btn,
+  .delete_Btn {
+    font-size: 18px;
+    max-width: 200px;
+  }
+}

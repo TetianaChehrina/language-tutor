@@ -15,11 +15,6 @@
   box-sizing: border-box;
 }
 
-.logo {
-  display: flex;
-  align-items: center;
-}
-
 .burger {
   display: block;
   background: none;

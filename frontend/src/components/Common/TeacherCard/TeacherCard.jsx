@@ -1,18 +1,20 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
-import { IoHeartOutline } from "react-icons/io5";
-import css from "./TeacherCard.module.css";
-import StarRating from "../StarRating/StarRating";
 import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-hot-toast";
+import { IoHeartOutline } from "react-icons/io5";
+import StarRating from "../StarRating/StarRating";
 import { selectFavorites } from "../../../redux/teachers/selectors";
 import {
   addToFavorites,
   removeFromFavorites,
 } from "../../../redux/teachers/slice";
-import { useState } from "react";
 import BookLessonModal from "../BookLessonModal /BookLessonModal";
+import css from "./TeacherCard.module.css";
 
 const TeacherCard = ({ teacher }) => {
   const dispatch = useDispatch();
+
   const favorites = useSelector(selectFavorites);
   const isFavorite = favorites.some((fav) => fav.id === teacher.id);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -23,6 +25,7 @@ const TeacherCard = ({ teacher }) => {
     surname,
     reviews = [],
     levels = [],
+    languages = [],
     teaching_approach,
     price_per_hour,
     lessons_done,
@@ -40,8 +43,10 @@ const TeacherCard = ({ teacher }) => {
   const handleFavorite = () => {
     if (isFavorite) {
       dispatch(removeFromFavorites(teacher));
+      toast.success(`${teacher.name} removed from favorites`);
     } else {
       dispatch(addToFavorites(teacher));
+      toast.success(`${teacher.name} added to favorites`);
     }
   };
 
@@ -71,6 +76,9 @@ const TeacherCard = ({ teacher }) => {
           <h3 className={css.text_Heading}>
             {name} {surname}
           </h3>
+          <p className={css.languages_Text}>
+            <strong>Languages:</strong> {languages.join(", ")}
+          </p>
           <div className={css.languages}>
             {levels.map((level, index) => (
               <span key={index} className={css.language_Tag}>
@@ -101,7 +109,7 @@ const TeacherCard = ({ teacher }) => {
 
       {isModalOpen && (
         <BookLessonModal
-          teacher={teacher}
+          teacherId={teacher._id}
           onClose={() => setIsModalOpen(false)}
         />
       )}

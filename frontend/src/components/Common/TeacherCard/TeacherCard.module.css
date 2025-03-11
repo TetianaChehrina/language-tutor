@@ -2,14 +2,13 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  flex-grow: 1;
   background: white;
   border-radius: 12px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
   padding: 16px;
   width: 100%;
-  min-height: 350px;
-  max-width: 500px;
+  min-height: 320px;
+  max-width: 480px;
   text-align: left;
   transition: transform 0.3s ease-in-out;
 }
@@ -17,13 +16,13 @@
 .top_Info {
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
   padding-bottom: 8px;
   border-bottom: 1px solid #ddd;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: bold;
-  gap: 8px;
+  gap: 5px;
 }
 
 .price {
@@ -47,34 +46,47 @@
 }
 
 img {
-  width: 80px;
-  height: 80px;
+  width: 75px;
+  height: 75px;
   border-radius: 50%;
   object-fit: cover;
 }
 
 .teacher_Info {
-  margin-top: 12px;
+  margin-top: 8px;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   text-align: left;
+  width: 100%;
+}
+
+.languages_Text {
+  font-size: 12px;
+  color: #333;
+  margin-top: 4px;
 }
 
 .languages {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  gap: 6px;
-  margin: 10px 0;
+  justify-content: flex-start;
+  gap: 4px;
+  margin: 6px 0;
 }
 
 .language_Tag {
   background-color: #f0f0f0;
-  padding: 5px 10px;
-  border-radius: 14px;
-  font-size: 12px;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 11px;
   font-weight: 600;
+}
+
+.text {
+  font-size: 13px;
+  line-height: 1.2;
+  margin-bottom: 6px;
 }
 
 .text_Strong {
@@ -93,75 +105,39 @@ img {
   font-weight: bold;
 }
 
-.text {
-  font-size: 14px;
-}
-
-.text_Strong {
-  font-size: 14px;
-  font-weight: bold;
-}
-
-.text_Heading {
-  font-size: 16px;
-  font-weight: bold;
-}
-
-.text_button {
-  font-size: 14px;
-}
-
 .btn_Container {
   display: flex;
-  gap: 20px;
+  gap: 10px;
+  flex-wrap: wrap;
 }
 
-.read_More {
-  display: inline-block;
-  text-decoration: none;
-  background: #ffb400;
-  color: white;
-  padding: 10px 16px;
-  border-radius: 8px;
-  font-weight: bold;
-  margin-top: 10px;
-  font-size: 12px;
-  width: fit-content;
-}
-
+.read_More,
 .booking_Btn {
   display: inline-block;
   text-decoration: none;
   background: #ffb400;
   color: white;
-  padding: 10px 16px;
-  border-radius: 8px;
+  padding: 8px 14px;
+  border-radius: 6px;
   font-weight: bold;
-  margin-top: 10px;
   font-size: 12px;
-  width: fit-content;
   border: none;
+  cursor: pointer;
 }
 
-.read_More:hover {
-  background: #e0a000;
-}
-
+.read_More:hover,
 .booking_Btn:hover {
   background: #e0a000;
 }
 
 @media screen and (min-width: 768px) {
   .card_Container {
-    /* width: 100%; */
-    max-width: 600px;
-    padding: 20px;
+    max-width: 550px;
+    padding: 18px;
   }
 
   .top_Info {
-    flex-wrap: nowrap;
-    gap: 30px;
-    font-size: 20px;
+    font-size: 14px;
   }
 
   .main_Content {
@@ -169,76 +145,63 @@ img {
     align-items: flex-start;
     text-align: left;
   }
-  .rating_Text {
-    font-size: 14px;
-  }
 
   img {
-    width: 100px;
-    height: 100px;
+    width: 90px;
+    height: 90px;
   }
 
   .teacher_Info {
-    margin-left: 16px;
-    align-items: flex-start;
-    text-align: left;
+    margin-left: 12px;
   }
 
-  .languages {
-    justify-content: flex-start;
+  .languages_Text {
+    font-size: 14px;
   }
 
-  .read_More {
-    font-size: 16px;
+  .language_Tag {
+    font-size: 12px;
+    padding: 5px 10px;
+  }
+
+  .text {
+    font-size: 14px;
+  }
+
+  .read_More,
+  .booking_Btn {
+    font-size: 14px;
+    padding: 10px 16px;
   }
 }
 
 @media screen and (min-width: 1440px) {
   .card_Container {
     max-width: 1200px;
-  }
-
-  .rating_Text {
-    font-size: 16px;
-  }
-
-  img {
-    width: 120px;
-    height: 120px;
+    padding: 22px;
   }
 
   .teacher_Info {
-    font-size: 18pxs;
-    margin-left: 20px;
+    font-size: 16px;
+    margin-top: 12px;
+  }
+
+  .languages_Text {
+    font-size: 16px;
   }
 
   .language_Tag {
-    font-size: 20px;
+    font-size: 14px;
+    padding: 6px 12px;
   }
 
   .text {
-    font-size: 22px;
-  }
-
-  .text_Strong {
-    font-size: 24px;
-    font-weight: bold;
-  }
-
-  .text_Heading {
-    font-size: 22px;
-  }
-
-  .text_Button {
     font-size: 16px;
   }
 
-  .read_More {
+  .read_More,
+  .booking_Btn {
     font-size: 16px;
-  }
-
-  .text_Strong {
-    font-size: 20px;
-    font-weight: bold;
+    padding: 12px 18px;
   }
 }

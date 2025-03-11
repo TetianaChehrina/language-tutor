@@ -78,11 +78,13 @@
 
 .date_Picker {
   width: 100%;
+  min-width: 100%;
   padding: 8px;
   border: 1px solid #ddd;
   border-radius: 6px;
   font-size: 14px;
   margin-bottom: 10px;
+  box-sizing: border-box;
 }
 
 .select {
@@ -137,5 +139,8 @@
 
   .input {
     width: 97%;
+  }
+  .date_Picker {
+    font-size: 16px;
   }
 }

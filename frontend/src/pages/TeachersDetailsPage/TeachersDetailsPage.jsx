@@ -4,9 +4,8 @@ import { useEffect, useState } from "react";
 import { fetchTeachersById } from "../../redux/teachers/operations.js";
 import { selectTeacher } from "../../redux/teachers/selectors.js";
 import TeacherDetailCard from "../../components/Common/TeacherDetailCard/TeacherDetailCard.jsx";
-import css from "./TeachersDetailsPage.module.css";
 import Container from "../../components/Common/Container/Container.jsx";
-
+import css from "./TeachersDetailsPage.module.css";
 const TeacherDetailsPage = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
@@ -34,15 +33,15 @@ const TeacherDetailsPage = () => {
 
   return (
     <Container>
-      <section className={css.teacherPage}>
-        <button onClick={handleGoBack} className={css.backButton}>
-          ← Back to Teachers
+      <section className={css.teacher_Page}>
+        <button onClick={handleGoBack} className={css.back_Button}>
+          ← Back
         </button>
         <TeacherDetailCard teacher={teacher} />
-        <nav className={css.detailsNav}>
+        <nav className={css.details_Nav}>
           <button
             onClick={handleToggleReviews}
-            className={`${css.link} ${showReviews ? css.active : ""}`}
+            className={`${css.reviews_Button} ${showReviews ? css.active : ""}`}
           >
             Reviews
           </button>

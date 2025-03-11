@@ -3,12 +3,27 @@ import API from "../api.js";
 
 export const bookLesson = createAsyncThunk(
   "lessons/book",
-  async (lessonData, { rejectWithValue }) => {
+  async (lessonData, thunkAPI) => {
     try {
-      const response = await API.post("/lessons/book", lessonData);
+      const state = thunkAPI.getState();
+      const token = state.auth.accessToken;
+
+      if (!token) {
+        return thunkAPI.rejectWithValue("No access token found");
+      }
+
+      const response = await API.post("/lessons/book", lessonData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
       return response.data;
     } catch (error) {
-      return rejectWithValue(error.response.data);
+      console.error("Booking error:", error.response?.data || error.message);
+      return thunkAPI.rejectWithValue(
+        error.response?.data?.message || "Booking failed"
+      );
     }
   }
 );
@@ -55,7 +70,7 @@ export const fetchBusySlots = createAsyncThunk(
   "lessons/fetchBusySlots",
   async (teacherId, { rejectWithValue }) => {
     try {
-      const response = await API.get(`/teachers/${teacherId}/busy-slots`);
+      const response = await API.get(`/lessons/${teacherId}/busy-slots`);
       return response.data;
     } catch (error) {
       return rejectWithValue(

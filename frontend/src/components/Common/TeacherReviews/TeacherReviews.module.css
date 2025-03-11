@@ -1,12 +1,25 @@
-.reviewsContainer {
+.reviews_Container {
   width: 100%;
-  max-width: 700px;
+  max-width: 250px;
   background: white;
   border-radius: 12px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   padding: 20px;
   text-align: left;
   margin-top: 20px;
+}
+.avatarPlaceholder {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #f4a261;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: bold;
+  color: white;
+  text-transform: uppercase;
 }
 
 .title {
@@ -25,29 +38,29 @@
   border-radius: 8px;
 }
 
-.reviewInfo {
+.review_Info {
   display: flex;
   align-items: center;
   gap: 10px;
 }
 
-.reviewAvatar {
-  width: 40px;
-  height: 40px;
+.review_Avatar {
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   object-fit: cover;
 }
 
-.reviewerName {
+.reviewer_Name {
   font-weight: bold;
 }
 
-.reviewText {
+.review_Text {
   font-size: 14px;
   margin-top: 5px;
 }
 
-.noReviews {
+.no_Reviews {
   font-size: 14px;
   color: gray;
   text-align: center;
@@ -55,27 +68,31 @@
 }
 
 @media screen and (min-width: 768px) {
-  .reviewsContainer {
-    max-width: 800px;
+  .reviews_Container {
+    max-width: 700px;
   }
 
-  .reviewAvatar {
+  .review_Avatar {
     width: 50px;
     height: 50px;
   }
 }
 
 @media screen and (min-width: 1440px) {
-  .reviewsContainer {
+  .reviews_Container {
     max-width: 900px;
     padding: 24px;
   }
-
-  .title {
-    font-size: 22px;
+  .reviewer_Name {
+    font-size: 20px;
+    font-weight: bold;
   }
 
-  .reviewText {
-    font-size: 16px;
+  .title {
+    font-size: 24px;
+  }
+
+  .review_Text {
+    font-size: 24px;
   }
 }

@@ -16,6 +16,9 @@ const Header = () => {
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
+  const closeMenu = () => {
+    setIsMenuOpen(false);
+  };
 
   return (
     <header className={css.header}>
@@ -31,12 +34,14 @@ const Header = () => {
             <NavLink
               to="/"
               className={({ isActive }) => (isActive ? css.active : css.link)}
+              onClick={closeMenu}
             >
               Home
             </NavLink>
             <NavLink
               to="/teachers"
               className={({ isActive }) => (isActive ? css.active : css.link)}
+              onClick={closeMenu}
             >
               Teachers
             </NavLink>
@@ -49,6 +54,7 @@ const Header = () => {
                   className={({ isActive }) =>
                     isActive ? css.active : css.link
                   }
+                  onClick={closeMenu}
                 >
                   Profile
                 </NavLink>

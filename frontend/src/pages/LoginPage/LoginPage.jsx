@@ -4,7 +4,7 @@ import css from "./LoginPage.module.css";
 
 const LoginPage = () => {
   return (
-    <div className={css.pageContainer}>
+    <div className={css.page_Container}>
       <Container>
         <h1 className={css.title}>Login</h1>
         <LoginForm />

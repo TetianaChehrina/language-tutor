@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { Suspense, lazy, useEffect, useState } from "react";
+import { Suspense, lazy, useEffect } from "react";
 import Layout from "./components/Common/Layout/Layout.jsx";
 import Loader from "./components/Common/Loader/Loader.jsx";
 import { refreshUser } from "../../frontend/src/redux/auth/operations.js";
@@ -33,28 +33,13 @@ const ProfilePage = lazy(() =>
 const App = () => {
   const dispatch = useDispatch();
   const isRefreshing = useSelector(selectIsRefreshing);
-
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
-  const [tokenChecked, setTokenChecked] = useState(false);
-
   useEffect(() => {
-    const checkRefreshToken = async () => {
-      try {
-        await dispatch(refreshUser()).unwrap();
-      } catch (error) {
-        if (error.message !== "No refresh token found") {
-          console.error("Token refresh failed:", error);
-        }
-      } finally {
-        setTokenChecked(true);
-      }
-    };
-
-    checkRefreshToken();
+    dispatch(refreshUser());
   }, [dispatch]);
 
-  if (isRefreshing || !tokenChecked) {
+  if (isRefreshing) {
     return <Loader />;
   }
 
