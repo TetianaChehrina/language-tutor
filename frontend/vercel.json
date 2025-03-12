@@ -1,3 +1,9 @@
 {
-  "rewrites": [{ "source": "/(.*)", "destination": "/" }]
+  "rewrites": [
+    {
+      "source": "/api/(.*)",
+      "destination": "https://language-tutor-d6nx.onrender.com/api/$1"
+    },
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
 }
